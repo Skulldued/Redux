@@ -1,0 +1,48 @@
+const store = createStore(numberReducer,initalState);
+
+console.log(store);
+Store is an Object
+Inside store it contain an object which has getState() function which is used to access the Updated state which is present inside that state . another is dispatch() function this function is used to if you want to update the state which is present inside store then at that time we will use dispatch function ,dispatch function takes an action(Object)  
+           dispatch({type:"ADD" , payload:17}); when you perform this it will update the store state.
+
+
+
+Examples 1:- 
+const { createStore } = require("redux");
+
+function numberReducer(incomingObject, action) {
+  if (action.type === "ADD") {
+    const numberToAdd = action.payload;
+
+    return {
+      ...incomingObject,
+      number: incomingObject.number + numberToAdd,
+    };
+  } else if (action.type === "SUBTRACT") {
+    const numberToSubtract = action.payload;
+
+    return {
+      ...incomingObject,
+      number: incomingObject.number - numberToSubtract,
+    };
+  } else if (action.type === "INCREMENT") {
+    return {
+      ...incomingObject,
+      number: incomingObject.number + 1,
+    };
+  } else if (action.type === "DECREMENT") {
+    return {
+      ...incomingObject,
+      number: incomingObject.number - 1,
+    };
+  } else {
+    return incomingObject;
+  }
+}
+
+const initalState = { number: 0 };
+const store = createStore(numberReducer,initalState);
+console.log(store.getState()); 
+// we will find current object value using this
+store.dispatch({type:"ADD" , payload : 49});
+console.log(store.getState());  
